@@ -1,6 +1,3 @@
-// Graph Size Expansion.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 #include "Node.h"
@@ -34,14 +31,6 @@ void setupTable() {
 
 void writeOutRecord() {
     std::ofstream out("record.csv");
-    /*out << "number of nodes,connections,number of subgraphs\n";
-    for (std::pair<int, std::map<int, std::vector<int>>> i : record) {
-        for (std::pair<int, std::vector<int>> j : i.second) {
-            for (int k : j.second) {
-                out << i.first << "," << j.first << "," << k << "\n";
-            }
-        }
-    }*/
     out << "connections";
     for (int i = 0; i < upto; i++) {
         out << "," << (i + 1) << " component(s)";
@@ -63,8 +52,6 @@ void saveConfigurationToStats() {
     record[current][connections].push_back(subgraphs);
 }
 void outputStatPoint() {
-    //*outputFile << current << "," << connections << "," << subgraphs << "\n";
-    //std::cout << current << "," << connections << "," << subgraphs << "\n";
     table[subgraphs - 1][connections]++;
 }
 
@@ -89,15 +76,9 @@ void dfsDisplay(std::vector<Node*> nodes) {
     for (int i = 0; i < size; i++) {
         checked[i] = false;
     }
-   // std::cout << "Forest:\n";
     while (head < size) {
         if (!checked[head]) {
             std::vector<int> tree = getConnections(checked, nodes[head]);
-            //std::cout << "Connected Subgraph: ";
-            //for (int n : tree) {
-            //    std::cout << n << " ";
-            //}
-            //std::cout << "\n";
             subgraphs++;
         }
         head++;
@@ -116,13 +97,10 @@ void permutateGraphs(std::vector<Node*> nodes, int index) {
     if (index + 1 == nodes.size()) {
         totalGraphs++;
         dfsDisplay(nodes);
-        //showConnections(nodes);
-        //saveConfigurationToStats();
         outputStatPoint();
         return;
     }
     int headPermutationSize = pow(2, nodes.size() - 1 - index);
-    //std::cout << "headPermutationSize " << headPermutationSize << "\n";
     std::vector<Node*> connectingNodes(nodes.begin() + index + 1, nodes.end());
     std::vector<int> toggleOnCount;
     int exponent = 1;
@@ -150,9 +128,6 @@ int main() {
     time_t timestamp;
     time(&timestamp);
     std::cout << "start: " << ctime(&timestamp) << "\n";
-    //std::ofstream out("record.csv");
-    //out << "number of nodes,connections,number of subgraphs\n";
-    //outputFile = &out;
     std::vector<Node*> nodes;
     for (current = 0; current < upto; current++) {
         Node* newNode = new Node(current);
@@ -163,7 +138,6 @@ int main() {
     setupTable();
     permutateGraphs(nodes, 0);
     writeOutRecord();
-    //out.close();
     time(&timestamp);
     std::cout << "end: " << ctime(&timestamp) << "\n";
 }
