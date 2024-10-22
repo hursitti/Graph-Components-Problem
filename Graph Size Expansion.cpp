@@ -1,6 +1,3 @@
-// Graph Size Expansion.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 #include "Node.h"
@@ -61,15 +58,9 @@ void dfsDisplay(std::vector<Node*> nodes) {
     for (int i = 0; i < size; i++) {
         checked[i] = false;
     }
-   // std::cout << "Forest:\n";
     while (head < size) {
         if (!checked[head]) {
             std::vector<int> tree = getConnections(checked, nodes[head]);
-            //std::cout << "Connected Subgraph: ";
-            //for (int n : tree) {
-            //    std::cout << n << " ";
-            //}
-            //std::cout << "\n";
             subgraphs++;
         }
         head++;
@@ -88,13 +79,10 @@ void permutateGraphs(std::vector<Node*> nodes, int index) {
     if (index + 1 == nodes.size()) {
         totalGraphs++;
         dfsDisplay(nodes);
-        //showConnections(nodes);
-        //saveConfigurationToStats();
         outputStatPoint();
         return;
     }
     int headPermutationSize = pow(2, nodes.size() - 1 - index);
-    //std::cout << "headPermutationSize " << headPermutationSize << "\n";
     std::vector<Node*> connectingNodes(nodes.begin() + index + 1, nodes.end());
     std::vector<int> toggleOnCount;
     int exponent = 1;
@@ -134,7 +122,6 @@ int main() {
         record[current] = emptyMap;
     }
     permutateGraphs(nodes, 0);
-    //writeOutRecord();
     out.close();
     time(&timestamp);
     std::cout << "end: " << ctime(&timestamp) << "\n";
