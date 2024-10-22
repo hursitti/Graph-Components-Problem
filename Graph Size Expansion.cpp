@@ -1,6 +1,3 @@
-// Graph Size Expansion.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 #include "Node.h"
@@ -58,7 +55,6 @@ void permutateGraphs(std::vector<Node*> nodes, int index) {
         return;
     }
     int headPermutationSize = pow(2, nodes.size() - 1 - index);
-    //std::cout << "headPermutationSize " << headPermutationSize << "\n";
     std::vector<Node*> connectingNodes(nodes.begin() + index + 1, nodes.end());
     std::vector<int> toggleOnCount;
     int exponent = 1;
