@@ -1,0 +1,14 @@
+#pragma once
+#include <string>
+#include <vector>
+#include "Node.h"
+
+class Graph {
+public:
+	int id;
+	//node, component id
+	std::map<int, int> componentMap;
+	int components;
+	Graph(std::vector<Node*> nodes, int _id);
+	int componentsAfterConnection(std::Vector<Node*> nodes);
+};
