@@ -5,10 +5,8 @@
 
 class Graph {
 public:
-	int id;
-	//node, component id
-	std::map<int, int> componentMap;
-	int components;
-	Graph(std::vector<Node*> nodes, int _id);
-	int componentsAfterConnection(std::Vector<Node*> nodes);
+	int membership;
+	int length;
+	bool isMember(int id);
+	
 };
