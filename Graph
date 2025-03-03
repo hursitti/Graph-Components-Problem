@@ -5,8 +5,7 @@
 
 class Graph {
 public:
-	int membership;
-	int length;
-	bool isMember(int id);
-	
+	int nodeAmount;
+	std::vector<int> connectivityGraph;
+	Graph(int _nodeAmount);
 };
